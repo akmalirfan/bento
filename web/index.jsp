@@ -1,4 +1,6 @@
+<%@page import="common.ResultList"%>
 <jsp:include page="header.jsp"/>
+<%@ page import ="java.sql.*, common.DB" %>
 <%
     String userType = "Guest";
     boolean isLoggedIn = false;
@@ -88,5 +90,12 @@
         %>
                 
     </div> <!-- /.container -->
+    <%
+    String query = "SELECT * FROM user WHERE id=1";
+    ResultList rs = DB.query(query);
+    rs.next();
+    
+    out.println("username");
+    %>
 </body>
 </html>
