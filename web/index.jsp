@@ -95,7 +95,7 @@
     ResultList rs = DB.query(query);
     rs.next();
     
-    out.println("username");
+    out.println(rs.getString("username"));
     %>
 </body>
 </html>
