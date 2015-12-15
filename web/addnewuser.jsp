@@ -39,6 +39,8 @@
     catch (Exception ex)
     {
         ex.printStackTrace();
+        response.sendRedirect("login.jsp");
     }
+    
     
 %>
