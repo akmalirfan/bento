@@ -37,17 +37,6 @@
             session.removeAttribute(access_error);
             }
         %>
-        
-        <div class="col-xs-4" style="color:white;">
-        <%
-            out.println(session.getAttribute("userType"));
-            if (!isLoggedIn) {
-                out.println("<a href=\"login.jsp\">Log in</a>");
-            } else {
-                out.println("<a href=\"LogoutServlet\">Log out</a>");
-            }
-        %>
-        </div>
                 
     </div> <!-- /.container -->
     <jsp:include page="all_include.html"/>
