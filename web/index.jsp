@@ -13,10 +13,10 @@
     
     if (session.getAttribute("Error") != null) {
         if (session.getAttribute("Error").equals("Invalid password.")) {
-            invalidPassword = true;
+            invalidPassword = true; 
         }
     }
-%>
+%> 
 <!doctype html>
 <html lang="en">
 <head>
