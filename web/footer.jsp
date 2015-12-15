@@ -1,11 +1,4 @@
-<%-- 
-    Document   : footer
-    Created on : Dec 11, 2015, 10:02:30 PM
-    Author     : V5-473PG
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <footer>
     <div class="container">
         <div class="row">
