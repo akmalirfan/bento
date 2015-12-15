@@ -39,39 +39,44 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("inputUsername");
             String password = request.getParameter("inputPassword");
             HttpSession session = ((HttpServletRequest) request).getSession();
-            String query = "SELECT * FROM user AS u, profile AS p WHERE u.username = p.username AND u.username='" + username + "'";
+            //String query = "SELECT * FROM user AS u, profile AS p WHERE u.username = p.username AND u.username='" + username + "'";
+            String query = "SELECT * FROM user WHERE username = '"+username+"'";
             System.out.println(query);
             ResultList rs = DB.query(query);
             
             //System.out.println(rs);
             if (rs != null) {
                 if (rs.next()) {
-                    String userTypeFromDB = rs.getString("usertype");
+                    //String userTypeFromDB = rs.getString("usertype");
                     if (rs.getString("password").equals(password)) { // If valid password
                         session.setAttribute("User", username); // Saves username string in the session object
                         session.setAttribute("name",  rs.getString("name"));
                         session.setAttribute("viewPermission",  rs.getString("viewPermission"));
-                        if (userTypeFromDB.equals("super")) {
+                        
+                        session.setAttribute("userType", "admin");
+                        response.sendRedirect(request.getContextPath() + "/index.jsp");
+                        /*if (userTypeFromDB.equals("super")) {
                             session.setAttribute("userType", "root");
                             session.setAttribute("isSuper", "true");
                         }
                         else {
                             session.setAttribute("userType", userTypeFromDB);
-                        }
+                        }*/
                         //out.println("password inputted = password in DB = username & pwd found in system");
                     }
                     else { // Password does not match, i.e., invalid user password
                         session.setAttribute("Login Error", "Invalid password.");
-                        //out.println("password inputted != password in DB BUT username found in system");
+                        response.sendRedirect(request.getContextPath() + "/login.jsp");
                     }
                 } else { // No record in the result set, i.e., invalid username
                     session.setAttribute("Login Error", "User not found.");
+                    response.sendRedirect(request.getContextPath() + "/login.jsp");
                 }
             } else {
                 session.setAttribute("Login Error", "Error while accessing database.");
-                //out.println("Error while accessing database");
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
             }
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            //response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
     }
 

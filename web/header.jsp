@@ -91,41 +91,6 @@
                 
                 <% if (isLoggedIn) { %>
                     <ul class="nav navbar-nav navbar-right">
-                        
-                        <!--- Super Admin Component -->
-                        <% if (session.getAttribute("isSuper") != null && session.getAttribute("isSuper").equals("true")) { %>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    Role: <%=session.getAttribute("userType")%><span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="<%=request.getContextPath()%>/ChangeUserRole?userType=root">Admin</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/ChangeUserRole?userType=lecturer">Lecturer</a></li>
-                                </ul>
-                            </li>
-                            <% if(session.getAttribute("userType").equals("lecturer")) {
-                                ResultList rs = DB.query("SELECT * FROM user, profile WHERE user.username = profile.username AND user.usertype = 'lecturer'");
-                            %>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Lecturer: <%=session.getAttribute("name")%> <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <% while(rs.next()) { %>
-                                    <li><a href="<%=request.getContextPath()%>/ChangeUsername?username=<%=rs.getString("username")%>&name=<%=rs.getString("name")%>"><%=rs.getString("name")%></a></li>
-                                    <% } %>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Permission: <%=session.getAttribute("viewPermission")%> <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <% for (ViewPermission permission : ViewPermission.values()) { %>
-                                    <li><a href="<%=request.getContextPath()%>/ChangeViewPermission?permission=<%=permission.name()%>"><%=permission%></a></li>
-                                    <% } %>
-                                </ul>
-                            </li>
-                            <% } %>
-                        <% } %>
-                        <!--- Super Admin Component END -->
-                        
                         <% if (session.getAttribute("viewPermission") != null) { %>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

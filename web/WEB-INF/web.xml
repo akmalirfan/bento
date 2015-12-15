@@ -16,10 +16,10 @@
         <filter-name>UploadPageFilter</filter-name>
         <url-pattern>/upload/upload.jsp</url-pattern>
     </filter-mapping>
-    <filter-mapping>
+    <!--<filter-mapping>
         <filter-name>LoginCheckFilter</filter-name>
         <url-pattern>*.jsp</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
     <filter-mapping>
         <filter-name>PermissionCheckFilter</filter-name>
         <url-pattern>/root/*</url-pattern>
