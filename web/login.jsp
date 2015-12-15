@@ -1,4 +1,4 @@
-,<%@page import="common.ResultList"%>
+<%@page import="common.ResultList"%>
 <%@ page import ="java.sql.*, common.DB" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%

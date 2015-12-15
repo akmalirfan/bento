@@ -1,7 +1,7 @@
 <%@page import="common.ResultList"%>
 <%@page import="common.DB"%>
 <%@ page import="java.sql.*" %>
-<% Class.forName("com.mysql.jdbc.Driver"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
