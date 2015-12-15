@@ -48,7 +48,7 @@
     <% if (isLoggedIn) { %>
     <div class="brand">Bento Car Rental
         <h1 align="right">
-            <a href="#" style="color:white;">Hi, <%= session.getAttribute("User") %></a> |
+            <a href="user_myaccount.jsp" style="color:white;">Hi, <%= session.getAttribute("User") %></a> |
             <a href="LogoutServlet" style="color:white;">Logout</a>
         </h1>
     </div>
