@@ -32,7 +32,7 @@
                     <div class="app-title">
                     </div>
                     <div class="login-form">
-                        <form name="signup" action="addnewuser.jsp"  method="post">
+                        <form name="signup" action="AddNewUserServlet"  method="post">
                             <div class="control-group">
                                 <div align="left">
                                     <strong style="font-size:16px;">Username</strong>
