@@ -8,6 +8,8 @@ package user;
 import common.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,14 +36,31 @@ public class AddNewUserServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String query =
+            /*String query =
                     "INSERT INTO user (username, password, phone, email, address) " +
                     "VALUES ('" + request.getParameter("username")
                     + "','" + request.getParameter("password")
                     + "','" + request.getParameter("phone")
                     + "','" + request.getParameter("email")
                     + "','" + request.getParameter("address") + "')";
-            DB.update(query);
+            DB.update(query);*/
+            
+            String query =
+                    "INSERT INTO user (username, password, phone, email, address)"
+                    + "VALUES(?,?,?,?,?)";
+            
+            try (PreparedStatement pstmt = DB.getConnection().prepareStatement(query)) {
+                pstmt.setString(1, request.getParameter("username"));
+                pstmt.setString(2, request.getParameter("password"));
+                pstmt.setString(3, request.getParameter("phone"));
+                pstmt.setString(4, request.getParameter("email"));
+                pstmt.setString(5, request.getParameter("address"));
+                pstmt.executeUpdate();
+
+                pstmt.close();
+            } catch (SQLException se) {
+                System.out.println(se);
+            }
             
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
