@@ -1,6 +1,6 @@
 <%@page import="common.ResultList"%>
+<%@page import ="java.sql.*, common.DB" %>
 
-<%@ page import ="java.sql.*, common.DB" %>
 <%
     String userType = "Guest";
     boolean isLoggedIn = false;
@@ -16,7 +16,8 @@
             invalidPassword = true; 
         }
     }
-%> 
+%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,10 +32,10 @@
         %>
                 <div class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true" style="padding-right: 10px"></span>
-                    <strong><%=session.getAttribute(access_error) %></strong>
+                    <strong><%= session.getAttribute(access_error) %></strong>
                 </div>
         <%
-            session.removeAttribute(access_error);
+                session.removeAttribute(access_error);
             }
         %>
                 
@@ -43,7 +44,7 @@
     <jsp:include page="header.jsp"/>
 
     <div class="container">
-       <div class="row">
+        <div class="row">
             <div class="box">
                 <div class="col-lg-12 text-center">
                     <h2 class="brand-before">
@@ -61,12 +62,12 @@
                         <ol class="carousel-indicators hidden-xs">
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                               <img class="img-responsive img-full" src="img/car1.jpg" alt="">
+                                <img class="img-responsive img-full" src="img/car1.jpg" alt="">
                             </div>
                             <div class="item">
                                 <img class="img-responsive img-full" src="img/car2.jpg" alt="">
@@ -74,10 +75,10 @@
                             <div class="item">
                                 <img class="img-responsive img-full" src="img/car3.jpg" alt="">
                             </div>
-                             <div class="item ">
+                            <div class="item ">
                                 <img class="img-responsive img-full" src="img/myvicar.jpg" alt="">
                             </div>
-                             <div class="item ">
+                            <div class="item ">
                                 <img class="img-responsive img-full" src="img/satriacar.jpg" alt="">
                             </div>
                         </div>

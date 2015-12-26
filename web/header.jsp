@@ -1,47 +1,16 @@
 <%@page import="common.ResultList"%>
 <%@page import="common.ViewPermission"%>
 <%@page import="common.DB"%>
-<%@page import="java.util.ArrayList, common.Page" %>
+<%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String userType = "Guest";
     boolean isLoggedIn = false;
+    
     if (session.getAttribute("userType") != null) {
         userType = (String) session.getAttribute("userType");
         isLoggedIn = true;
     }
-    
-    // HEADER PAGE TO BE INCLUDED IN ALL PAGES
-    // FOR AUTHENTICATION CHECK, USE auth.jsp
-    //
-    // Sample Usage:
-    // In a page where you want to include this file, add
-    // <jsp:include page="../header.jsp"/> if inside one folder in and
-    // <jsp:include page="header.jsp"/> if in the same directory as this file
-    //
-    // MAKE SURE TO INCLUDE THIS FILE BEFORE YOUR 
-    // <div class="container"></div> TAGS
-    // 
-    
-    // Example output: index.jsp
-    String currentPageNameWithSlash = request.getServletPath();
-    String currentPageLoaded = currentPageNameWithSlash.substring(currentPageNameWithSlash.lastIndexOf("/")+1); 
-    
-    ArrayList<Page> pages = new ArrayList();
-    
-    // add pages to arraylist
-    // Pages constructor: <userType> <fileName> <pageTitle>
-    pages.add(new Page("all", request.getContextPath() + "/index.jsp", "Home"));
-    
-    
-    //pages.add(new Page("root", request.getContextPath() + "/root/viewLecturers.jsp", "Lecturers"));
-    
-    String viewPermissionAttribute = "Guest";
-    
-    /*if (session.getAttribute("viewPermission") != null) {
-        ViewPermission a = ViewPermission.valueOf(session.getAttribute("viewPermission").toString());
-        viewPermissionAttribute = a.toString();
-    }*/
 %>
 <!DOCTYPE html>
 <html>
@@ -76,6 +45,7 @@
                 <a class="navbar-brand" href="index.jsp">Bento Car Rental</a>
 
             </div>
+            <% if (!userType.equals("admin")) { %>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -94,6 +64,31 @@
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
+            <% } else { %>
+            <!-- Header for admin -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="admin_home.php">Home</a>
+                    </li>
+                    <li>
+                        <a href="admin_manageAccount.php">Users</a>
+                    </li>
+                    <li>
+                        <a href="#">Bookings</a>
+                    </li>
+                    <li>
+                        <a href="admin_manageCar.php">Cars</a>
+                    </li>
+                    <li>
+                        <a href="admin_viewfeedback.php">Feedbacks</a>
+                    </li>
+                    <li>
+                        <a href="logout.php"><strong>Logout (<%= session.getAttribute("User") %>)</strong></a>
+                    </li>
+                </ul>
+            </div>
+            <% } %>
         </div>
         <!-- /.container -->
     </nav>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package user;
 
 import common.DB;
@@ -18,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Kiwi
+ * @author Kiwi (original author) & Irfan
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
@@ -42,29 +37,19 @@ public class LoginServlet extends HttpServlet {
             //String query = "SELECT * FROM user AS u, profile AS p WHERE u.username = p.username AND u.username='" + username + "'";
             String query = "SELECT * FROM user WHERE username = '"+username+"'";
             System.out.println(query);
-            ResultList rs = DB.query(query);
+            ResultList rl = DB.query(query);
             
-            //System.out.println(rs);
-            if (rs != null) {
-                if (rs.next()) {
-                    //String userTypeFromDB = rs.getString("usertype");
-                    if (rs.getString("password").equals(password)) { // If valid password
+            if (rl != null) {
+                if (rl.next()) {
+                    int level = Integer.parseInt(rl.getString("level"));
+                    if (rl.getString("password").equals(password)) { // If valid password
                         session.setAttribute("User", username); // Saves username string in the session object
-                        session.setAttribute("name",  rs.getString("name"));
-                        session.setAttribute("viewPermission",  rs.getString("viewPermission"));
+                        session.setAttribute("name",  rl.getString("name"));
+                        session.setAttribute("viewPermission",  rl.getString("viewPermission"));
                         
-                        session.setAttribute("userType", "admin");
+                        session.setAttribute("userType", (level == 0 ? "admin" : "user"));
                         response.sendRedirect(request.getContextPath() + "/index.jsp");
-                        /*if (userTypeFromDB.equals("super")) {
-                            session.setAttribute("userType", "root");
-                            session.setAttribute("isSuper", "true");
-                        }
-                        else {
-                            session.setAttribute("userType", userTypeFromDB);
-                        }*/
-                        //out.println("password inputted = password in DB = username & pwd found in system");
-                    }
-                    else { // Password does not match, i.e., invalid user password
+                    } else { // Password does not match, i.e., invalid user password
                         session.setAttribute("Login Error", "Invalid password.");
                         response.sendRedirect(request.getContextPath() + "/login.jsp");
                     }
