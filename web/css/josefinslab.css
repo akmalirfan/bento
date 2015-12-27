@@ -1,0 +1,8 @@
+/* josefin-slab-regular - latin */
+@font-face {
+  font-family: 'Josefin Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Josefin Slab'), local('JosefinSlab'),
+       url('../fonts/josefin-slab-v6-latin-regular.woff2') format('woff2'); /* Chrome 26+, Opera 23+ */
+}
