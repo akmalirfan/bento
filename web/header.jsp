@@ -1,8 +1,6 @@
-<%@page import="common.ResultList"%>
-<%@page import="common.ViewPermission"%>
 <%@page import="common.DB"%>
-<%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
     String userType = "Guest";
     boolean isLoggedIn = false;
@@ -12,23 +10,19 @@
         isLoggedIn = true;
     }
 %>
-<!DOCTYPE html>
-<html>
-    <% if (isLoggedIn) { %>
+
+<header>
     <div class="brand">Bento Car Rental
         <h1 align="right">
+    <% if (isLoggedIn) { %>
             <a href="user_myaccount.jsp" style="color:white;">Hi, <%= session.getAttribute("User") %></a> |
             <a href="LogoutServlet" style="color:white;">Logout</a>
-        </h1>
-    </div>
     <% } else { %>
-    <div class="brand">Bento Car Rental
-        <h1 align="right">
             <a href="signup.jsp" style="color:white;">Sign Up</a> |
             <a href="login.jsp" style="color:white;">Login</a>
+    <% } %>
         </h1>
     </div>
-    <% } %>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -45,13 +39,15 @@
                 <a class="navbar-brand" href="index.jsp">Bento Car Rental</a>
 
             </div>
-            <% if (!userType.equals("admin")) { %>
+            
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="index.jsp">Home</a>
                     </li>
+                    
+                    <% if (!userType.equals("admin")) { %>
                     <li>
                         <a href="ourvehicle.jsp">Our Vehicles</a>
                     </li>
@@ -61,16 +57,7 @@
                     <li>
                         <a href="feedbacks.jsp">Feedback</a>
                     </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-            <% } else { %>
-            <!-- Header for admin -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="admin_home.php">Home</a>
-                    </li>
+                    <% } else { %>
                     <li>
                         <a href="admin_manageAccount.php">Users</a>
                     </li>
@@ -83,12 +70,15 @@
                     <li>
                         <a href="admin_viewfeedback.php">Feedbacks</a>
                     </li>
+                    <% } %>
+                    
+                    <% if (isLoggedIn) { %>
                     <li>
-                        <a href="logout.php"><strong>Logout (<%= session.getAttribute("User") %>)</strong></a>
+                        <a href="LogoutServlet"><strong>Logout (<%= session.getAttribute("User") %>)</strong></a>
                     </li>
+                    <% } %>
                 </ul>
-            </div>
-            <% } %>
-        </div>
-        <!-- /.container -->
+            </div> <!-- /.navbar-collapse -->
+        </div> <!-- /.container -->
     </nav>
+</header>

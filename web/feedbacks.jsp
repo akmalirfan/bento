@@ -6,14 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <jsp:include page="all_include.html"/>
+    <title>Submit Feedbacks</title>
 </head>
-
 <body>
     <jsp:include page="header.jsp"/>
 
@@ -47,8 +44,8 @@
                                 <input type="radio" name="Question1" value="Satisfied" id="Question1_1">
                                 Satisfied
                                 <br>
-                                <input type="radio" name="Question1" value="Nuetral" id="Question1_2">
-                                Nuetral
+                                <input type="radio" name="Question1" value="Neutral" id="Question1_2">
+                                Neutral
                                 <br>
                                 <input type="radio" name="Question1" value="Unsatisfied" id="Question1_3">
                                 Unsatisfied
@@ -106,8 +103,8 @@
                                 <input type="radio" name="Question4" value="satisfied2" id="Question4_1">
                                 Satisfied
                                 <br>
-                                <input type="radio" name="Question4" value="nuetralsatisfied" id="Question4_2">
-                                Netral
+                                <input type="radio" name="Question4" value="neutralsatisfied" id="Question4_2">
+                                Neutral
                                 <br>
                                 <input type="radio" name="Question4" value="unsatisfied2" id="Question4_3">
                                 Unsatisfied
@@ -191,7 +188,6 @@
     </div>
 
     <jsp:include page="footer.jsp"/>
-
 </body>
 </html>
 

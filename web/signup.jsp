@@ -6,15 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sign Up</title>
-        <jsp:include page="all_include.html"/>
-        
-        
-    </head>
-    
+<html lang="en">
+<head>
+    <jsp:include page="all_include.html"/>
+    <title>Sign Up</title>
+</head>
+<body>
     <jsp:include page="header.jsp"/>
     <div class="container">
 
@@ -70,7 +67,8 @@
             </div>
         </div>
     </div>
-</div>
-    
+    </div>
+
     <jsp:include page="footer.jsp"/>
+</body>
 </html>

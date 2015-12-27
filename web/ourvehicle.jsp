@@ -1,22 +1,21 @@
 <%@page import="common.ResultList"%>
 <%@page import="common.DB"%>
-<%@ page import="java.sql.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <jsp:include page= "all_include.html" />
+    <title>Our Vehicles</title>
 </head>
 <body>
     <jsp:include page="header.jsp"/>
 
     <%
         String query = "SELECT image_path, code, rate FROM car";
-        ResultList rl = DB.query(query); 
+        ResultList rl = DB.query(query);
 
         if(!rl.next()) {
-            out.println("Sorry, could not find that publisher. " +
-            "Please <A HREF='tryAgain.html'>try again</A>.");
+            System.out.println("Error in retrieving from car.");
         } else {
     %>
 
@@ -34,22 +33,19 @@
                
                     
                     <div class="col-md-12">
-                        <% 
-                                while(rl.next())
-                                {
-                        %>
+    <% 
+                    while(rl.next()) {
+    %>
                         <img class="img-responsive img-border-left" src="<%= rl.getString("image_path") %>" width="100" height="100">
                         <p><strong>Code :</strong> <%= rl.getString("code") %></p>
                         <p><strong>Rate :</strong> RM<%= rl.getString("rate") %>/hour</p>
                         
-                        <% 
-           } 
-            }
-       %>
+    <%
+                    }
+        }
+    %>
                     </div>
-               
                 </div>
-
             </div>
         </div>
     </div>
