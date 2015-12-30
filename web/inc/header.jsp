@@ -15,11 +15,11 @@
     <div class="brand">Bento Car Rental
         <h1 align="right">
     <% if (isLoggedIn) { %>
-            <a href="user_myaccount.jsp" style="color:white;">Hi, <%= session.getAttribute("User") %></a> |
-            <a href="LogoutServlet" style="color:white;">Logout</a>
+            <a href="../user_myaccount.jsp" style="color:white;">Hi, <%= session.getAttribute("User") %></a> |
+            <a href="../LogoutServlet" style="color:white;">Logout</a>
     <% } else { %>
-            <a href="signup.jsp" style="color:white;">Sign Up</a> |
-            <a href="login.jsp" style="color:white;">Login</a>
+            <a href="../signup.jsp" style="color:white;">Sign Up</a> |
+            <a href="../login.jsp" style="color:white;">Login</a>
     <% } %>
         </h1>
     </div>
@@ -36,7 +36,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.jsp">Bento Car Rental</a>
+                <a class="navbar-brand" href="../index.jsp">Bento Car Rental</a>
 
             </div>
             
@@ -44,37 +44,37 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.jsp">Home</a>
+                        <a href="../index.jsp">Home</a>
                     </li>
                     
                     <% if (!userType.equals("admin")) { %>
                     <li>
-                        <a href="ourvehicle.jsp">Our Vehicles</a>
+                        <a href="../ourvehicle.jsp">Our Vehicles</a>
                     </li>
                     <li>
-                        <a href="login.jsp">Reservation</a>
+                        <a href="../login.jsp">Reservation</a>
                     </li>
                     <li>
-                        <a href="feedbacks.jsp">Feedback</a>
+                        <a href="../feedbacks.jsp">Feedback</a>
                     </li>
                     <% } else { %>
                     <li>
-                        <a href="admin/manageAccount.jsp">Users</a>
+                        <a href="../admin/manageAccount.jsp">Users</a>
                     </li>
                     <li>
-                        <a href="#">Bookings</a>
+                        <a href="../admin/manageBooking.jsp">Bookings</a>
                     </li>
                     <li>
-                        <a href="manageCar_admin.jsp">Cars</a>
+                        <a href="../admin/manageCar_admin.jsp">Cars</a>
                     </li>
                     <li>
-                        <a href="viewFeedback_admin.jsp">Feedbacks</a>
+                        <a href="../admin/viewFeedback_admin.jsp">Feedbacks</a>
                     </li>
                     <% } %>
                     
                     <% if (isLoggedIn) { %>
                     <li>
-                        <a href="LogoutServlet"><strong>Logout (<%= session.getAttribute("User") %>)</strong></a>
+                        <a href="../LogoutServlet"><strong>Logout (<%= session.getAttribute("User") %>)</strong></a>
                     </li>
                     <% } %>
                 </ul>

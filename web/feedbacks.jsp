@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <form action="submit_feedbacks.jsp" align="left" method="post">
+                <form action="submit_feedbacks.jsp" method="post">
                     <div class="row" style="padding-left:7%;">
                         <div class="col-md-12" style="margin-bottom:1%;">
                             <strong>

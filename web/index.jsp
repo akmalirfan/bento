@@ -1,46 +1,10 @@
-<%@page import="common.ResultList"%>
-<%@page import ="java.sql.*, common.DB" %>
-
-<%
-    String userType = "Guest";
-    boolean isLoggedIn = false;
-    if (session.getAttribute("userType") != null) {
-        userType = (String) session.getAttribute("userType");
-        isLoggedIn = true;
-    }
-    
-    boolean invalidPassword = false;
-    
-    if (session.getAttribute("Error") != null) {
-        if (session.getAttribute("Error").equals("Invalid password.")) {
-            invalidPassword = true; 
-        }
-    }
-%>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <jsp:include page="all_include.html"/>
     <title>Home</title>
 </head>
 <body>
-    <div class="container">
-        <%
-            String access_error = "Access Error";
-            if (session.getAttribute(access_error) != null) { // If there is an error during login
-        %>
-                <div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true" style="padding-right: 10px"></span>
-                    <strong><%= session.getAttribute(access_error) %></strong>
-                </div>
-        <%
-                session.removeAttribute(access_error);
-            }
-        %>
-                
-    </div> <!-- /.container -->
-    <jsp:include page="all_include.html"/>
     <jsp:include page="header.jsp"/>
 
     <div class="container">
@@ -63,6 +27,8 @@
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">

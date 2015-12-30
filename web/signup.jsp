@@ -56,7 +56,7 @@
                             </div>
                             <div class="form-group">
                                 <div align="left">
-                                    <strong style="font-size:16px;" for="address" name="address">Address</strong>
+                                    <strong style="font-size:16px;">Address</strong>
                                 </div>
                                 <textarea class="form-control" name="address" rows="5" id="address" placeholder="Your Address" required></textarea>
                             </div><br>

@@ -21,7 +21,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Kiwi
+ * @author Kiwi (Original Author)
+ * Modified by Akmal Irfan
  */
 public class AdminPermissionFilter implements Filter {
     
@@ -114,9 +115,15 @@ public class AdminPermissionFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             HttpSession session = ((HttpServletRequest) request).getSession();
             
-            String type = "root";
-            String userType = (String) session.getAttribute("userType");
-            if(httpRequest.getRequestURI().contains(type) && !userType.equals(type)) {
+            String type = "admin";
+            String userType = "Guest";
+            
+            if (session.getAttribute("userType") != null) {
+                userType = (String) session.getAttribute("userType");
+            }
+            
+            //if(httpRequest.getRequestURI().contains(type) && !userType.equals(type)) {
+            if(!userType.equals(type)) {
                 session.setAttribute("Access Error", "You're not allowed to access this page");
                 httpResponse.sendRedirect(filterConfig.getServletContext().getContextPath() + "/index.jsp");
             }

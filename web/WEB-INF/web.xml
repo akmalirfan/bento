@@ -12,6 +12,8 @@
         <filter-name>UploadPageFilter</filter-name>
         <filter-class>filter.UploadPageFilter</filter-class>
     </filter>
+    
+    <!-- Mapping -->
     <filter-mapping>
         <filter-name>UploadPageFilter</filter-name>
         <url-pattern>/upload/upload.jsp</url-pattern>
@@ -22,7 +24,7 @@
     </filter-mapping>-->
     <filter-mapping>
         <filter-name>PermissionCheckFilter</filter-name>
-        <url-pattern>/root/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <session-config>
         <session-timeout>
