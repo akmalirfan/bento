@@ -52,7 +52,7 @@
                         <a href="ourvehicle.jsp">Our Vehicles</a>
                     </li>
                     <li>
-                        <a href="login.jsp">Reservation</a>
+                        <a href="user_reservation.jsp">Reservation</a>
                     </li>
                     <li>
                         <a href="feedbacks.jsp">Feedback</a>
