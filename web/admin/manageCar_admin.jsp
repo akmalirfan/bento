@@ -1,27 +1,16 @@
-<%-- 
-    Document   : admin_manageCar
-    Created on : Dec 13, 2015, 10:24:37 PM
-    Author     : zeeZiha
---%>
-
+<%@page import="common.ResultList"%>
+<%@page import="common.DB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<?php
-session_start();
-
-$valid_session = isset($_SESSION['level']) ? $_SESSION['level'] == "0" : FALSE;
-
-if($valid_session){ ?>
-    <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <jsp:include page="all_include.html"/>
+        <jsp:include page="../inc/all_include.html"/>
     </head>
 
     <body>
 
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../inc/header.jsp"/>
 
     <div class="container">
 
@@ -34,13 +23,14 @@ if($valid_session){ ?>
                     </h2>
                     <hr>
 
-                    <?php
-                    include "db_connect.php";
+                    <%
+                    String query = "SELECT * FROM car";
+                    ResultList rl = DB.query(query);
 
-                    $sql = "select * from car";
-                    $result = $conn->query($sql);
-
-                    ?>
+                    if(!rl.next()) {
+                        System.out.println("Error in retrieving from car.");
+                    } else {
+                %>
                     <div align="center">
                       <button class="btn btn-link" data-toggle="modal" data-target="#addCar_modal">Add Car</button>
                     </div>
@@ -54,30 +44,30 @@ if($valid_session){ ?>
                                 <th>image</th>
                                 <th>Action</th>
                             </tr>
-                            <?php
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row["code"] ?></td>
-                                        <td><?php echo $row["model"] ?></td>
-                                        <td><?php echo $row["reg_no"] ?></td>
-                                        <td><?php echo $row["rate"] ?></td>
-                                        <td>
-                                            <img src="<?php echo $row['image_path'] ?>" height="70" width="100">
+                            
+                          <%
+                        while(rl.next()) {
+                %>
+                            <tr>
+                                <td><%= rl.getString("code") %></td>
+                                <td><%= rl.getString("model") %></td>
+                                <td><%= rl.getString("reg_no") %></td>
+                                <td><%= rl.getString("rate") %></td>
+                                <td>
+                                            <img src="../<%= rl.getString("image_path") %>" height="70" width="100">
                                         </td>
                                         <td>
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#editCar_modal">Edit</button>
 
-                                            <?php $id = $row["id"]; ?>
-                                            <a class="btn btn-danger" href="admin_deleteCar.php?id=<?php echo $id ?>">Delete</a>
+                                            <% String id = rl.getString("id"); %>
+                                            <a class="btn btn-danger" href="admin_deleteCar.php?id=<%= rl.getString("id") %>">Delete</a>
                                         </td>
-                                    </tr>
-
-                                    <?php
-                                }
-                            }
-                            ?>
+                            </tr>
+                <%
+                        }
+                    }
+                %>
+                         
                         </table>
                     </div>
                 </div>
@@ -86,19 +76,11 @@ if($valid_session){ ?>
 
     </div>
 
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="../inc/footer.jsp"/>
     </body>
 
     </html>
-    <?php
-    $conn->close();
-}
-else{
-    echo "<div align='center'><h1 style='color:red'>You Have No Permission To Enter This Page</h1></div>";
-    header('Refresh: 2; URL=index.php');
-    exit();
-}
-?>
+ 
 
 <div id="addCar_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -166,31 +148,31 @@ else{
                         <tr>
                             <td><strong>Code</strong></td>
                             <td>
-                                <input type="text" name="code" class="form-control" value="<?php echo $row["code"] ?>"/>
+                                <input type="text" name="code" class="form-control" value="<%= rl.getString("code") %>"/>
                             </td>
                         </tr>
                         <tr>
                             <td><strong>Model</strong></td>
                             <td>
-                                <input type="text" name="model" class="form-control" value="<?php echo $row["model"] ?>"/>
+                                <input type="text" name="model" class="form-control" value="<%= rl.getString("model") %>"/>
                             </td>
                         </tr>
                         <tr>
                             <td><strong>Reg No</strong></td>
                             <td>
-                                <input type="text" name="reg_no" class="form-control" value="<?php echo $row["regNo"] ?>"/>
+                                <input type="text" name="reg_no" class="form-control" value="<%= rl.getString("reg_no") %>"/>
                             </td>
                         </tr>
                         <tr>
                             <td><strong>Rate</strong></td>
                             <td>
-                                <input type="text" name="rate" class="form-control" value="<?php echo $row["rate"] ?>"/>
+                                <input type="text" name="rate" class="form-control" value="<%= rl.getString("rate") %>"/>
                             </td>
                         </tr>
                         <tr>
                             <td><strong>Image</strong></td>
                             <td>
-                               <input type="file" name="image"/><img src="<?php echo $row['image_path'] ?>" height="70" width="100">
+                               <input type="file" name="image"/><img src="../<%= rl.getString("image_path") %>" height="70" width="100">
                             </td>
                         </tr>
                     </table>
