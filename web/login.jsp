@@ -77,7 +77,7 @@
                                     <div align="left">
                                         <strong style="font-size:16px;">Username</strong>
                                     </div><br>
-                                    <input name="inputUsername" type="text" class="login-field form-control" placeholder="Your Username" required>
+                                    <input name="inputUsername" type="text" class="login-field form-control" placeholder="Your Username" autofocus required>
                                     <label class="login-field-icon fui-user" for="login-name"></label>
                                 </div>
                                 <div class="control-group">
@@ -88,7 +88,7 @@
                                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                                 </div><br>
                                 <input class="btn btn-primary btn-large btn-block" type="submit" name="submit" value="Log In"><br>
-                                Not a member? <a href="signup.php">Create an account free</a>
+                                Not a member? <a href="signup.jsp">Create an account free</a>
                             </form>
                         </div>
                     </div>

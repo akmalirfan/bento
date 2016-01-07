@@ -7,26 +7,23 @@
 <%@page import="common.DB"%>
 
 <!DOCTYPE html>
-    <html lang="en">
-
+<html lang="en">
     <head>
         <jsp:include page="all_include.html"/>
+        <title>Reservation</title>
         <script>
             $(function() {
                 $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
             });
         </script>
     </head>
-
     <body>
+        <jsp:include page="header.jsp"/>
 
-    <jsp:include page="header.jsp"/>
-
-    <div class="container">
-        <div class="row">
-            <div class="box">
-
-                      <div class="container-fluid" align="center">
+        <div class="container">
+            <div class="row">
+                <div class="box">
+                    <div class="container-fluid" align="center">
                         <div class="col-lg-12">
                             <hr>
                             <h2 class="intro-text text-center">
@@ -61,7 +58,7 @@
                                 <strong>Pick-up Time</strong>
                                 <div class="form-group">
                                     <select name="pickup_time" class="form-control">
-                                        <option>- - - -</option>
+                                        <!--<option>- - - -</option>-->
                                         <option value="7:00:00">7:00 AM</option>
                                         <option value="8:00:00">8:00 AM</option>
                                         <option value="9:00:00">9:00 AM</option>
@@ -87,7 +84,7 @@
                                 <strong>Drop-off Time</strong>
                                 <div class="form-group">
                                     <select name="pickoff_time" class="form-control">
-                                        <option>- - - -</option>
+                                        <!--<option>- - - -</option>-->
                                         <option value="7:00:00">7:00 AM</option>
                                         <option value="8:00:00">8:00 AM</option>
                                         <option value="9:00:00">9:00 AM</option>
@@ -111,17 +108,12 @@
                                 <button type="submit" class="btn btn-primary btn-block">Continue</button>
                             </form>
                         </div>
-                      </div>
-                     
-               
-               
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div>
-
-    <jsp:include page="footer.jsp"/>
+        <jsp:include page="footer.jsp"/>
     </body>
-
-    </html>
+</html>
    

@@ -46,8 +46,8 @@ public class AddNewUserServlet extends HttpServlet {
             DB.update(query);*/
             
             String query =
-                    "INSERT INTO user (username, password, phone, email, address)"
-                    + "VALUES(?,?,?,?,?)";
+                    "INSERT INTO user (username, password, phone, email, address, level)"
+                    + "VALUES(?,?,?,?,?,?)";
             
             try (PreparedStatement pstmt = DB.getConnection().prepareStatement(query)) {
                 pstmt.setString(1, request.getParameter("username"));
@@ -55,6 +55,7 @@ public class AddNewUserServlet extends HttpServlet {
                 pstmt.setString(3, request.getParameter("phone"));
                 pstmt.setString(4, request.getParameter("email"));
                 pstmt.setString(5, request.getParameter("address"));
+                pstmt.setInt(6, 1);
                 pstmt.executeUpdate();
 
                 pstmt.close();

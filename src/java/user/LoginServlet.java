@@ -44,8 +44,8 @@ public class LoginServlet extends HttpServlet {
                     int level = Integer.parseInt(rl.getString("level"));
                     if (rl.getString("password").equals(password)) { // If valid password
                         session.setAttribute("User", username); // Saves username string in the session object
-                        session.setAttribute("name",  rl.getString("name"));
-                        session.setAttribute("viewPermission",  rl.getString("viewPermission"));
+                        session.setAttribute("UserID", rl.getString("id"));
+                        //session.setAttribute("viewPermission",  rl.getString("viewPermission"));
                         
                         session.setAttribute("userType", (level == 0 ? "admin" : "user"));
                         response.sendRedirect(request.getContextPath() + "/index.jsp");
